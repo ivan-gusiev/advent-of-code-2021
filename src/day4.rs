@@ -182,7 +182,7 @@ fn part1(input: Input) {
         .collect::<Vec<_>>();
 
     let mut result: i32 = -1;
-    
+
     for num in input.drawn_numbers {
         sessions.iter_mut().for_each(|s| s.mark_number(num));
 
@@ -208,11 +208,15 @@ fn part2(input: Input) {
         .collect::<Vec<_>>();
 
     let mut result: i32 = -1;
-    
+
     for num in input.drawn_numbers {
         sessions.iter_mut().for_each(|s| s.mark_number(num));
 
-        let winners = sessions.iter().enumerate().filter(|(_, c)| c.check().is_some()).collect::<Vec<_>>();
+        let winners = sessions
+            .iter()
+            .enumerate()
+            .filter(|(_, c)| c.check().is_some())
+            .collect::<Vec<_>>();
         if winners.len() > 0 {
             for (_, w) in winners.iter() {
                 let (score, _condition) = w.check().unwrap();
