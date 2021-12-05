@@ -3,7 +3,7 @@ use std::str::FromStr;
 
 struct Instruction {
     pub command: String,
-    pub value: i32
+    pub value: i32,
 }
 
 impl FromStr for Instruction {
@@ -12,7 +12,10 @@ impl FromStr for Instruction {
     fn from_str(s: &str) -> Result<Instruction, Boom> {
         let spl = s.split_ascii_whitespace().collect::<Vec<_>>();
         let val = spl[1].parse::<i32>().map_err(Boom::from_display)?;
-        Ok(Instruction { command: spl[0].to_string(), value: val })
+        Ok(Instruction {
+            command: spl[0].to_string(),
+            value: val,
+        })
     }
 }
 
@@ -29,13 +32,13 @@ pub fn run() -> BResult<()> {
 fn part1(instructions: &[Instruction]) {
     let mut depth = 0;
     let mut horizontal = 0;
-    
+
     for instruction in instructions {
         match instruction.command.as_str() {
             "forward" => horizontal += instruction.value,
             "down" => depth += instruction.value,
             "up" => depth -= instruction.value,
-            _ => println!("{}", "unknown command")
+            _ => println!("{}", "unknown command"),
         }
     }
 
@@ -46,16 +49,16 @@ fn part2(instructions: &[Instruction]) {
     let mut aim = 0;
     let mut depth = 0;
     let mut horizontal = 0;
-    
+
     for instruction in instructions {
         match instruction.command.as_str() {
             "forward" => {
                 horizontal += instruction.value;
                 depth += aim * instruction.value;
-            },
+            }
             "down" => aim += instruction.value,
             "up" => aim -= instruction.value,
-            _ => println!("{}", "unknown command")
+            _ => println!("{}", "unknown command"),
         }
     }
 

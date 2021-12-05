@@ -20,20 +20,21 @@ fn part1(values: &[String]) {
         for i in 0..width {
             let bit: usize = match value.chars().nth(i).unwrap() {
                 '1' => 1,
-                _ => 0
+                _ => 0,
             };
             counts[i] += bit;
         }
     }
 
-    let result_number = counts.iter()
-        .map(|x| if x > &threshold {"1"} else {"0"})
+    let result_number = counts
+        .iter()
+        .map(|x| if x > &threshold { "1" } else { "0" })
         .collect::<String>();
     println!("counts: {:?}", counts);
     println!("number: {}", result_number);
 
     let gamma = parse_binary(&result_number);
-    let epsilon = !gamma & ((2usize).pow((width) as u32)-1);
+    let epsilon = !gamma & ((2usize).pow((width) as u32) - 1);
 
     println!("gamma: {} epsilon: {}", gamma, epsilon);
     println!("part 1 result: {}", gamma * epsilon);
@@ -47,22 +48,50 @@ fn part2(values: &[String]) {
 
     let oxygen_generator = &values[oxygen_generator_id];
     let co2_scrubber = &values[co2_scrubber_id];
-    println!("oxygen generator id: {}, value: {}", oxygen_generator_id, oxygen_generator);
-    println!("co2 scrubber id: {}, value: {}", co2_scrubber_id, co2_scrubber);
+    println!(
+        "oxygen generator id: {}, value: {}",
+        oxygen_generator_id, oxygen_generator
+    );
+    println!(
+        "co2 scrubber id: {}, value: {}",
+        co2_scrubber_id, co2_scrubber
+    );
 
-    println!("part 2 result: {}", parse_binary(oxygen_generator) * parse_binary(co2_scrubber));
+    println!(
+        "part 2 result: {}",
+        parse_binary(oxygen_generator) * parse_binary(co2_scrubber)
+    );
 }
 
-fn find_index(values: &[String], indices: Vec<usize>, depth: usize, is_most_common: bool) -> Option<usize> {
+fn find_index(
+    values: &[String],
+    indices: Vec<usize>,
+    depth: usize,
+    is_most_common: bool,
+) -> Option<usize> {
     let total_values = indices.len();
-    if total_values < 1 { return None };
-    if total_values == 1 { return Some(indices[0]) }
+    if total_values < 1 {
+        return None;
+    };
+    if total_values == 1 {
+        return Some(indices[0]);
+    }
 
     let width = values[0].len();
-    if depth >= width { return None };
-    
-    let zeros = indices.iter().filter(|i| values[**i].chars().nth(depth) == Some('0')).map(|x| *x).collect::<Vec<_>>();
-    let ones = indices.iter().filter(|i| values[**i].chars().nth(depth) == Some('1')).map(|x| *x).collect::<Vec<_>>();
+    if depth >= width {
+        return None;
+    };
+
+    let zeros = indices
+        .iter()
+        .filter(|i| values[**i].chars().nth(depth) == Some('0'))
+        .map(|x| *x)
+        .collect::<Vec<_>>();
+    let ones = indices
+        .iter()
+        .filter(|i| values[**i].chars().nth(depth) == Some('1'))
+        .map(|x| *x)
+        .collect::<Vec<_>>();
 
     match (ones.len() >= zeros.len(), is_most_common) {
         (true, true) => find_index(values, ones, depth + 1, is_most_common),
