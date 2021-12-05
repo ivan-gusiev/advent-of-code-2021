@@ -2,6 +2,7 @@
 
 mod day1;
 mod day2;
+mod day3;
 mod util;
 
 use util::BResult;
@@ -12,6 +13,7 @@ fn main() {
     match section.as_str() {
         "1" => process_result(day1::run()),
         "2" => process_result(day2::run()),
+        "3" => process_result(day3::run()),
         _ => println!("huh?")
     }
 }
