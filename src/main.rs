@@ -5,6 +5,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 mod util;
 
 use util::BResult;
@@ -20,6 +21,7 @@ fn main() {
         "3" => process_result(day3::run()),
         "4" => process_result(day4::run()),
         "5" => process_result(day5::run()),
+        "6" => process_result(day6::run()),
         _ => println!("huh?"),
     }
 }

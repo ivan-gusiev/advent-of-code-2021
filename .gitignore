@@ -11,6 +11,7 @@ Cargo.lock
 
 # Added by Ivan
 /output
+.DS_Store
 
 # Added by cargo
 

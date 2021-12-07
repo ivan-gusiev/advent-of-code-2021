@@ -117,7 +117,7 @@ fn part1(input: &Input) {
 }
 
 fn part2(_input: &Input) {
-    println!("part 2 solution: {}", "???")
+    println!("part 2 solution: {}", "oops")
 }
 
 fn paint(map: &Vec<Vec<i32>>, max_depth: i32) -> BResult<()> {
