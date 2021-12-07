@@ -81,7 +81,7 @@ fn part1(input: &Vec<i32>) {
     let mut fish = FishSpectrum::from_vec(input).unwrap();
 
     println!("Initial state:   \t{}", fish);
-    for i in 1..=80 {
+    for _ in 1..=80 {
         fish = fish.update();
     }
 
@@ -91,7 +91,7 @@ fn part1(input: &Vec<i32>) {
 fn part2(input: &Vec<i32>) {
     let mut fish = FishSpectrum::from_vec(input).unwrap();
 
-    for i in 1..=256000 {
+    for _ in 1..=256 {
         fish = fish.update();
         //println!("Generation {} fish count {}", i, fish.len());
     }
