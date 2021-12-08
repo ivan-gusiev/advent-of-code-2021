@@ -60,3 +60,9 @@ impl std::fmt::Display for Boom {
 }
 
 impl std::error::Error for Boom {}
+
+pub fn median(numbers: &mut [i32]) -> i32 {
+    numbers.sort();
+    let mid = numbers.len() / 2;
+    numbers[mid]
+}
