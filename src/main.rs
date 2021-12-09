@@ -7,6 +7,8 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
+mod seq_ops;
 mod util;
 
 use util::BResult;
@@ -24,6 +26,7 @@ fn main() {
         "5" => process_result(day5::run()),
         "6" => process_result(day6::run()),
         "7" => process_result(day7::run()),
+        "8" => process_result(day8::run()),
         _ => println!("huh?"),
     }
 }
