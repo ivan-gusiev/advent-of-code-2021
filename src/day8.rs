@@ -1,7 +1,7 @@
 use crate::util::{self, BResult, Boom};
+use std::collections::HashMap;
 use std::convert::TryInto;
 use std::str::FromStr;
-use std::collections::HashMap;
 
 /******************
 
@@ -98,14 +98,6 @@ fn part2(notes: &Input) {
     use crate::seq_ops::IterOps;
     use display_segment::{A, B, C, COUNT, D, E, F, G};
 
-    fn same(lhs: &str, rhs: &str) -> bool {
-        let mut lhv: Vec<char> = lhs.chars().collect();
-        let mut rhv: Vec<char> = rhs.chars().collect();
-        lhv.sort();
-        rhv.sort();
-        lhv == rhv
-    }
-
     fn find_by_length(digits: &[String], length: usize) -> Vec<usize> {
         digits
             .iter()
@@ -193,18 +185,26 @@ fn part2(notes: &Input) {
         );
         sig_to_dis[B] = b[0];
 
-        let g = signals[digit_to_signal[8]]
-            .chars()
-            .difference(
-                vec![sig_to_dis[A], sig_to_dis[B], sig_to_dis[C], sig_to_dis[D], sig_to_dis[E], sig_to_dis[F]]
-                    .iter()
-                    .collect::<String>()
-                    .chars(),
-            );
+        let g = signals[digit_to_signal[8]].chars().difference(
+            vec![
+                sig_to_dis[A],
+                sig_to_dis[B],
+                sig_to_dis[C],
+                sig_to_dis[D],
+                sig_to_dis[E],
+                sig_to_dis[F],
+            ]
+            .iter()
+            .collect::<String>()
+            .chars(),
+        );
         sig_to_dis[G] = g[0];
 
         //println!("story so far: {:?}", (A..=G).zip(sig_to_dis.iter()).collect::<Vec<_>>());
-        sig_to_dis.into_iter().zip('a'..='g').collect::<HashMap<char, char>>()
+        sig_to_dis
+            .into_iter()
+            .zip('a'..='g')
+            .collect::<HashMap<char, char>>()
     }
 
     fn translate(word: &str, dictionary: &HashMap<char, char>) -> String {
@@ -226,7 +226,7 @@ fn part2(notes: &Input) {
             "acf" => Some(7),
             "abcdefg" => Some(8),
             "abcdfg" => Some(9),
-            _ => None
+            _ => None,
         }
     }
 
