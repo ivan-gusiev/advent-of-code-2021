@@ -110,7 +110,10 @@ fn part2(table: &Input) {
     let low_points = table.get_low_points();
     let mut basins = low_points
         .iter()
-        .map(|p| {print!("."); generate_basin(table, *p)})
+        .map(|p| {
+            print!(".");
+            generate_basin(table, *p)
+        })
         .collect::<Vec<_>>();
     println!("basins found");
 

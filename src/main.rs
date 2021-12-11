@@ -1,6 +1,7 @@
 #![feature(array_windows)]
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -29,6 +30,7 @@ fn main() {
         "7" => process_result(day7::run()),
         "8" => process_result(day8::run()),
         "9" => process_result(day9::run()),
+        "10" => process_result(day10::run()),
         _ => println!("huh?"),
     }
 }

@@ -66,3 +66,9 @@ pub fn median(numbers: &mut [i32]) -> i32 {
     let mid = numbers.len() / 2;
     numbers[mid]
 }
+
+pub fn median64(numbers: &mut [i64]) -> i64 {
+    numbers.sort();
+    let mid = numbers.len() / 2;
+    numbers[mid]
+}
