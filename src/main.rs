@@ -2,6 +2,8 @@
 
 mod day1;
 mod day10;
+mod day11;
+mod day12;
 mod day2;
 mod day3;
 mod day4;
@@ -31,6 +33,8 @@ fn main() {
         "8" => process_result(day8::run()),
         "9" => process_result(day9::run()),
         "10" => process_result(day10::run()),
+        "11" => process_result(day11::run()),
+        "12" => process_result(day12::run()),
         _ => println!("huh?"),
     }
 }

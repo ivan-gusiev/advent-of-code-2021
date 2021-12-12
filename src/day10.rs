@@ -22,7 +22,7 @@ fn reflect(c: char) -> char {
         ']' => '[',
         '}' => '{',
         '>' => '<',
-        c => c
+        c => c,
     }
 }
 
@@ -32,7 +32,7 @@ fn syntax_score(c: char) -> i32 {
         ']' => 57,
         '}' => 1197,
         '>' => 25137,
-        _ => 0
+        _ => 0,
     }
 }
 
@@ -42,7 +42,7 @@ fn auto_score(c: char) -> i32 {
         ']' => 2,
         '}' => 3,
         '>' => 4,
-        _ => 0
+        _ => 0,
     }
 }
 
@@ -51,12 +51,14 @@ fn get_syntax_score(line: &str) -> i32 {
     for c in line.chars() {
         match c {
             '(' | '[' | '{' | '<' => stack.push(c),
-            ')' | ']' | '}' | '>' => {
-                match stack.pop() {
-                    None => return syntax_score(c),
-                    Some(t) => if t != reflect(c) { return syntax_score(c) }
+            ')' | ']' | '}' | '>' => match stack.pop() {
+                None => return syntax_score(c),
+                Some(t) => {
+                    if t != reflect(c) {
+                        return syntax_score(c);
+                    }
                 }
-            }
+            },
             _ => (),
         }
     }
@@ -78,12 +80,14 @@ fn part2(lines: &Input) {
         for c in line.chars() {
             match c {
                 '(' | '[' | '{' | '<' => stack.push(c),
-                ')' | ']' | '}' | '>' => {
-                    match stack.pop() {
-                        None => panic!("error"),
-                        Some(t) => if t != reflect(c) { panic!("error") }
+                ')' | ']' | '}' | '>' => match stack.pop() {
+                    None => panic!("error"),
+                    Some(t) => {
+                        if t != reflect(c) {
+                            panic!("error")
+                        }
                     }
-                }
+                },
                 _ => (),
             }
         }
