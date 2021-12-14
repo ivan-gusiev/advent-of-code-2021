@@ -61,6 +61,18 @@ impl std::fmt::Display for Boom {
 
 impl std::error::Error for Boom {}
 
+impl std::convert::From<std::num::ParseIntError> for Boom {
+    fn from(err: std::num::ParseIntError) -> Boom {
+        Boom::from_display(err)
+    }
+}
+
+impl std::convert::From<Box<dyn std::error::Error>> for Boom {
+    fn from(err: Box<dyn std::error::Error>) -> Boom {
+        Boom::from_display(err)
+    }
+}
+
 pub fn median(numbers: &mut [i32]) -> i32 {
     numbers.sort();
     let mid = numbers.len() / 2;

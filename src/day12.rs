@@ -165,11 +165,18 @@ impl Path {
 }
 
 impl std::fmt::Display for Path {
-
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{} {:?}", if self.has_visited_small_cave_twice() { "*" } else { " " }, self.road)
+        write!(
+            f,
+            "{} {:?}",
+            if self.has_visited_small_cave_twice() {
+                "*"
+            } else {
+                " "
+            },
+            self.road
+        )
     }
-
 }
 
 fn part2(input: &Input) {
@@ -213,8 +220,5 @@ fn part2(input: &Input) {
 
     let paths = get_all_paths(input, "start", "end");
 
-    println!(
-        "part 2 solution: {}",
-        paths.len()
-    );
+    println!("part 2 solution: {}", paths.len());
 }
