@@ -1,6 +1,6 @@
 use regex::Regex;
-use std::str::FromStr;
 use std::collections::HashMap;
+use std::str::FromStr;
 
 pub type BResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
@@ -86,8 +86,11 @@ pub fn median64(numbers: &mut [i64]) -> i64 {
     numbers[mid]
 }
 
-pub fn count_items<I, T>(data: I) -> HashMap<T, usize> 
-    where T: Eq + std::hash::Hash, I: Iterator<Item = T> {
+pub fn count_items<I, T>(data: I) -> HashMap<T, usize>
+where
+    T: Eq + std::hash::Hash,
+    I: Iterator<Item = T>,
+{
     let mut map = HashMap::<T, usize>::new();
     for x in data {
         map.entry(x).and_modify(|x| *x += 1).or_default();

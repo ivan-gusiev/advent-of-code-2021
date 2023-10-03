@@ -6,6 +6,7 @@ mod day11;
 mod day12;
 mod day13;
 mod day14;
+mod day15;
 mod day2;
 mod day3;
 mod day4;
@@ -14,6 +15,7 @@ mod day6;
 mod day7;
 mod day8;
 mod day9;
+mod grid;
 mod seq_ops;
 mod util;
 
@@ -39,6 +41,7 @@ fn main() {
         "12" => process_result(day12::run()),
         "13" => process_result(day13::run()),
         "14" => process_result(day14::run()),
+        "15" => process_result(day15::run()),
         _ => println!("huh?"),
     }
 }

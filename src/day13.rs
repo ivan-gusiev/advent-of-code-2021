@@ -155,7 +155,6 @@ impl Table {
                 if self.get(x, source_y) {
                     self.set(x, target_y, true)
                 }
-                
             }
         }
         self.effective_height = row;
@@ -213,7 +212,8 @@ fn part2(input: &Input) {
         table.width() as u16,
         table.height() as u16,
         &palette,
-    ).unwrap();
+    )
+    .unwrap();
 
     table.print();
     table.paint(&mut encoder).unwrap();

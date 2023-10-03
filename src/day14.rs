@@ -1,6 +1,6 @@
 use crate::util::{self, BResult, Boom};
-use std::str::FromStr;
 use std::collections::HashMap;
+use std::str::FromStr;
 
 #[derive(Debug)]
 struct Input {
@@ -46,8 +46,8 @@ pub fn run() -> BResult<()> {
 
 fn update_polymer(polymer: &mut String, rule_map: &HashMap<String, String>) {
     let mut i = 0;
-    while i < polymer.len()-1 {
-        let range = i..i+2;
+    while i < polymer.len() - 1 {
+        let range = i..i + 2;
         let s = &polymer[range.clone()];
 
         match rule_map.get(s) {
@@ -55,7 +55,7 @@ fn update_polymer(polymer: &mut String, rule_map: &HashMap<String, String>) {
                 polymer.replace_range(range, output);
                 i += 1;
             }
-            None => ()
+            None => (),
         }
         i += 1;
     }
